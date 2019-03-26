@@ -8,10 +8,10 @@ const cors = require('cors');
 class BetAPI{
 
 	constructor() {
-		debug("API initializing, server name: " + config.server.name);
+		console.log("API initializing, server name: " + config.server.name);
 		this.running = false;
 		try{
-			debug("Setting up express configurations");
+			console.log("Setting up express configurations");
 			//initialize express
 			this.api = express();
 			this.api.use(bodyParser.urlencoded({ extended:false }))
@@ -27,7 +27,7 @@ class BetAPI{
 			this.routes = require('./routes')(this.api);
 
 		}catch(e){
-			debug("Failed to initialize API, " + e);
+			console.log("Failed to initialize API, " + e);
 		}
 	}
 
