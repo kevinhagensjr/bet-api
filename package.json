@@ -1,0 +1,32 @@
+{
+  "name": "betuwings-api",
+  "version": "1.0.0",
+  "description": "api for betuwings api",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kevinhagensjr/bet-api.git"
+  },
+  "author": "Kevin Hagens jr",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kevinhagensjr/bet-api/issues"
+  },
+  "homepage": "https://github.com/kevinhagensjr/bet-api#readme",
+  "dependencies": {
+    "@slack/client": "^3.14.1",
+    "amqplib": "^0.5.2",
+    "bcrypt": "^1.0.3",
+    "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
+    "express": "^4.16.2",
+    "jsonwebtoken": "^8.1.0",
+    "mongodb": "^2.2.33",
+    "redis": "^2.8.0",
+    "relative-date": "^1.1.3"
+  }
+}
