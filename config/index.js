@@ -33,7 +33,7 @@ let config = {
 	stripe : {
 		key : {
 		 	publishable : 'pk_test_HwnlNCbDDF9OyJmGZOrmPGIW00cV7iHjGJ',
-			secret : 'sk_test_KXQKq5yXhAzSXqca3EXvju0x00HtSalr1Q';
+			secret : 'sk_test_KXQKq5yXhAzSXqca3EXvju0x00HtSalr1Q'
 		}
 	}
 };
