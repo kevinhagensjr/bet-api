@@ -1,6 +1,7 @@
 const config = require('./../../config');
 const auth = require('./../../services/auth');
 //const RabbitMQ = require('./../../services/rabbitmq');
+const stripe = require("stripe")(config.stripe.key.secret);
 const slack = require('./../../services/slack');
 const relativeDate = require('relative-date');
 const request = require('request');
@@ -126,14 +127,17 @@ class IndexController{
 				type  : deviceType
 			});
 		}
-		//add new user
-		const accountCreated = await this.userModel.setUser({
+
+		let userObject = {
 			username : username,
 			password : encryptedPassword,
 			email    : email,
 			photo    : photoUrl,
-			devices  : deviceList,
-		});
+			devices  : deviceList
+		};
+
+		//add new user
+		const accountCreated = await this.userModel.setUser(userObject);
 
 		//failed to add account
 		if(!accountCreated){

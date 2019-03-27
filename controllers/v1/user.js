@@ -67,6 +67,7 @@ class UserController{
 		const username = req.body.username;
 		const email    = req.body.email;
 		const photo = req.body.photo;
+		const stripe = req.body.stripe;
 
 		if(!userID){
 			return res.json({
@@ -101,6 +102,9 @@ class UserController{
 			userObject.photo = config.cdn + photo;
 		}
 
+		if(stripe){
+			userObject.stripe = stripe;
+		}
 		//update the users account
 		const updateSuccessful = await this.userModel.update(userID,userObject);
 		if(!updateSuccessful){
