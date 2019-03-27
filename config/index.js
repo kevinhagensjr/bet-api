@@ -35,6 +35,9 @@ let config = {
 		 	publishable : 'pk_test_HwnlNCbDDF9OyJmGZOrmPGIW00cV7iHjGJ',
 			secret : 'sk_test_KXQKq5yXhAzSXqca3EXvju0x00HtSalr1Q'
 		}
+	},
+	rapid : {
+		key : '102a005830mshffb5c4924a1e78fp1e9720jsn0c6b1dc5c0dd'
 	}
 };
 
