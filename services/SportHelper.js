@@ -26,7 +26,7 @@ class SportHelper{
     return new Promise((resolve,reject)=>{
       const url = this.rundownUrl + '/sports';
       console.log('running request for sports');
-      request(url,this.getHeaders,function (error, response, body) {
+      request(url,function (error, response, body) {
           console.log('sport response: ' + body + 'error: ' + error);
           if(error || response.statusCode != 200){
             console.log('status code: ' + response.statusCode + ' get sports error: ' + error );
