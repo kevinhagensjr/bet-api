@@ -27,7 +27,7 @@ class SportHelper{
       const url = this.rundownUrl + '/sports';
       request(url,this.getHeaders,function (error, response, body) {
           if(error || response.statusCode != 200){
-            console.error('status code: ' + response.statusCode + ' get sports error: ' + error );
+            console.log('status code: ' + response.statusCode + ' get sports error: ' + error );
             resolve(false);
           }
           resolve(JSON.parse(body));
@@ -56,7 +56,7 @@ class SportHelper{
       const url = this.rundownUrl + '/sports/' + sportId + '/events' + this.date + '?include=all_periods%2C+scores%2C+and%2For+teams';
       request(url,this.getHeaders,function (error, response, body) {
           if(error || response.statusCode != 200){
-            console.error('status code: ' + response.statusCode + ' get eventsBySport error: ' + error );
+            console.log('status code: ' + response.statusCode + ' get eventsBySport error: ' + error );
             resolve(false);
           }
           resolve(JSON.parse(body));

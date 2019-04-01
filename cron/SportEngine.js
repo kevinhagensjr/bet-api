@@ -13,6 +13,7 @@ async function run(){
   	console.log('Successfully connected to mongo db, running sports engine');
 
     const events = await SportHelper.getTodaysEvents();
+    console.log('events: ' + events);
     if(!events){
       return;
     }
