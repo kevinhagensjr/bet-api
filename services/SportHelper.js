@@ -35,6 +35,7 @@ class SportHelper{
     });
   }
   async getTodaysEvents(){
+    console.log('getting todays sports');
     let sports = await this.getSports();
     console.log('sports: ' + sports);
     if(!sports){
