@@ -6,6 +6,7 @@ class UserController{
 	constructor(){
 		this.userModel = require('./../../models/user');
 		this.betModel = require('./../../models/bet');
+		this.sports = {};
 	}
 
 	async profile(req,res){
