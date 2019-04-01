@@ -1,5 +1,5 @@
 const SportHelper = require('../services/SportHelper');
-let database = require('./services/database');
+let database = require('../services/database');
 
 async function run(){
   database.connect(async (db) => {
