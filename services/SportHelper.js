@@ -36,13 +36,17 @@ class SportHelper{
   }
   async getTodaysEvents(){
     let sports = await this.getSports();
+    consol.log('sports: ' + sports);
     if(!sports){
+      console.log('failed to get sports');
       return false;
     }
 
     for(let i = 0; i < sports.length; i++){
+      console.log('get sport: ' + sports[i]['sport_id']);
       let events = await this.getEventsBySport(sports[i]['sport_id']);
       if(!events){
+        console.log('failed to get sport: ' + sports[i]['sport_id']);
         continue;
       }
       sports[i]['events'] = events;
