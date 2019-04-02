@@ -37,7 +37,7 @@ let config = {
 		}
 	},
 	rapid : {
-		key : '102a005830mshffb5c4924a1e78fp1e9720jsn0c6b1dc5c0dd'
+		key : '095322b701msh21fa8c2b2568f50p17cba9jsn7b5f7a69f61c'
 	}
 };
 
