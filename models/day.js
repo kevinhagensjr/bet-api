@@ -71,9 +71,9 @@ class DayModel{
      if(result.length == 0){
        return false;
      }
-     day = result[0];
+     return result[0];
      //await this.setCache(key,JSON.stringify(day));
-     return day;
+    // return date;
 
    }catch(e){
      console.error('ERROR, failed to get day, ' + e);
