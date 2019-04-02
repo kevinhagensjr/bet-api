@@ -35,15 +35,12 @@ async function run(){
             await dayCollection
             .updateOne({ _id : new ObjectID(result[0]['_id'])},{ $set : dayObject }, {upsert: true});
         }
-
+        return;
     }catch(e){
       console.log('failed to save today event into array: ' + JSON.stringify(events));
     }
 
-
-
   });
-
 }
 
 run();
