@@ -60,7 +60,7 @@ class SportHelper{
   async getEventsBySport(sportId){
     const self = this;
     return new Promise((resolve,reject)=>{
-      const url = this.rundownUrl + '/sports/' + sportId + '/events' + this.date + '?include=all_periods%2C+scores%2C+and%2For+teams';
+      const url = this.rundownUrl + '/sports/' + sportId + '/events/' + this.date + '?include=all_periods%2C+scores%2C+and%2For+teams';
       request(url,self.getHeaders(),function (error, response, body) {
           if(error || response.statusCode != 200){
             console.log('status code: ' + response.statusCode + ' get eventsBySport error: ' + error );
