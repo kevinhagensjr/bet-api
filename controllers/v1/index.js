@@ -5,11 +5,25 @@ const stripe = require("stripe")(config.stripe.key.secret);
 const slack = require('./../../services/slack');
 const relativeDate = require('relative-date');
 const request = require('request');
+const SportHelper = require('./../../services/SportHelper');
 
 class IndexController{
 	constructor(){
 		this.userModel = require('./../../models/user');
-		this.betModel = require('./../../models/bet');
+		this.dayModel = require('./../../models/day');
+	}
+
+	async feed(req,res){
+		const userID = auth.getUserID(req);
+		if(!userID){
+			return res.json({
+				success : false,
+				error   : 'could not verify user'
+			});
+		}
+
+		const sports = await this.dayModel.getDay(SportHelper.getDate());
+		return res.json(sports);
 	}
 
 	/*
