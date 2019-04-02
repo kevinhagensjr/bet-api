@@ -18,7 +18,7 @@ async function run(){
       return;
     }
 
-    console.log(events);
+    console.log(JSON.serialize(events));
 
   });
 
