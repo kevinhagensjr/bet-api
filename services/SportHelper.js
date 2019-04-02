@@ -54,7 +54,7 @@ class SportHelper{
       sports.sports[i]['events'] = events;
     }
 
-    return events;
+    return sports;
   }
 
   async getEventsBySport(sportId){
