@@ -23,10 +23,11 @@ class SportHelper{
     ].join('-');
   }
   async getSports(){
+    const self = this;
     return new Promise((resolve,reject)=>{
       const url = this.rundownUrl + '/sports';
       console.log('running request for sports');
-      request(url,function (error, response, body) {
+      request(url,self.getHeaders(),function (error, response, body) {
           console.log('sport response: ' + body + 'error: ' + error);
           if(error || response.statusCode != 200){
             console.log('status code: ' + response.statusCode + ' get sports error: ' + error );
@@ -59,9 +60,10 @@ class SportHelper{
   }
 
   async getEventsBySport(sportId){
+    const self = this;
     return new Promise((resolve,reject)=>{
       const url = this.rundownUrl + '/sports/' + sportId + '/events' + this.date + '?include=all_periods%2C+scores%2C+and%2For+teams';
-      request(url,this.getHeaders,function (error, response, body) {
+      request(url,self.getHeaders(),function (error, response, body) {
           if(error || response.statusCode != 200){
             console.log('status code: ' + response.statusCode + ' get eventsBySport error: ' + error );
             resolve(false);
