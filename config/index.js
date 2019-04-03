@@ -38,6 +38,9 @@ let config = {
 	},
 	rapid : {
 		key : '095322b701msh21fa8c2b2568f50p17cba9jsn7b5f7a69f61c'
+	},
+	sportsteamlogo : {
+		key : 'e1d8e2f3866340ab9acab58b49553804'
 	}
 };
 

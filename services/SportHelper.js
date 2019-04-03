@@ -4,6 +4,7 @@ const request = require('request');
 class SportHelper{
   constructor(){
     this.rundownUrl = 'https://therundown-therundown-v1.p.rapidapi.com';
+    this.logoapi = 'https://sportteamslogo.com/api?key=';
     this.date = this.getDate();
   }
   getHeaders(){
@@ -66,6 +67,8 @@ class SportHelper{
             console.log('status code: ' + response.statusCode + ' get eventsBySport error: ' + error );
             resolve(false);
           }
+
+          
           resolve(JSON.parse(body));
       });
     });

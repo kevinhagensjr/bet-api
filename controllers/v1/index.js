@@ -23,6 +23,20 @@ class IndexController{
 		}
 
 		const sports = await this.dayModel.getDay(SportHelper.getDate());
+		for(let i =0; i < sports.length; i++){
+			if(!sports[i]['events']){
+				continue;
+			}
+
+			for(let x =0; x < sports[i]['events'].length; x++){
+				if(sports[i]['sport_name'] == 'NFL' || sports[i]['sport_name'] == 'NBA' || sports[i]['sport_name'] == 'MLB'){
+					sports[i]['events'][x]['teams_normalized'][0]['logo'] = config.cdn + 'logos/' + sports[i]['events'][x]['teams_normalized'][0]['mascot'];
+					sports[i]['events'][x]['teams_normalized'][0]['logo'] = config.cdn + 'logos/' + sports[i]['events'][x]['teams_normalized'][1]['mascot'];
+				}
+			}
+
+		}
+
 		return res.json(sports);
 	}
 
