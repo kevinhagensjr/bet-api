@@ -32,12 +32,13 @@ class IndexController{
 				if(sports[i]['sport_name'] == 'NFL' || sports[i]['sport_name'] == 'NBA' || sports[i]['sport_name'] == 'MLB'){
 					sports[i]['events'][x]['teams_normalized'][0]['logo'] = config.cdn + 'logos/' + sports[i]['events'][x]['teams_normalized'][0]['mascot'];
 					sports[i]['events'][x]['teams_normalized'][0]['logo'] = config.cdn + 'logos/' + sports[i]['events'][x]['teams_normalized'][1]['mascot'];
+					console.log( config.cdn + 'logos/' + sports[i]['events'][x]['teams_normalized'][1]['mascot']);
 				}
 			}
 
 		}
 
-		console.log(JSON.stringify(sports));
+	//	console.log(JSON.stringify(sports));
 
 		return res.json(sports);
 	}
