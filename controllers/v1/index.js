@@ -24,15 +24,15 @@ class IndexController{
 
 		let sports = await this.dayModel.getDay(SportHelper.getDate());
 		for(let i =0; i < sports['sports'].length; i++){
-			if(!sports['sports'][i]['events']){
+			if(!sports['sports'][i]['events']['events']){
 				continue;
 			}
 
-			for(let x =0; x < sports['sports'][i]['events'].length; x++){
+			for(let x =0; x < sports['sports'][i]['events']['events'].length; x++){
 				if(sports['sports'][i]['sport_name'] == 'NFL' || sports['sports'][i]['sport_name'] == 'NBA' || sports['sports'][i]['sport_name'] == 'MLB'){
-					sports['sports'][i]['events'][x]['teams_normalized'][0]['logo'] = config.cdn + 'logos/' + sports['sports'][i]['events'][x]['teams_normalized'][0]['mascot'];
-					sports['sports'][i]['events'][x]['teams_normalized'][0]['logo'] = config.cdn + 'logos/' + sports['sports'][i]['events'][x]['teams_normalized'][1]['mascot'];
-					console.log( config.cdn + 'logos/' + sports['sports'][i]['events'][x]['teams_normalized'][1]['mascot']);
+					sports['sports'][i]['events']['events'][x]['teams_normalized'][0]['logo'] = config.cdn + 'logos/' + sports['sports'][i]['events']['events'][x]['teams_normalized'][0]['mascot'];
+					sports['sports'][i]['events']['events'][x]['teams_normalized'][0]['logo'] = config.cdn + 'logos/' + sports['sports'][i]['events']['events'][x]['teams_normalized'][1]['mascot'];
+					console.log( config.cdn + 'logos/' + sports['sports'][i]['events']['events'][x]['teams_normalized'][1]['mascot']);
 				}
 			}
 
