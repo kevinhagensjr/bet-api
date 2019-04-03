@@ -22,7 +22,7 @@ class IndexController{
 			});
 		}
 
-		const sports = await this.dayModel.getDay(SportHelper.getDate());
+		let sports = await this.dayModel.getDay(SportHelper.getDate());
 		for(let i =0; i < sports.length; i++){
 			if(!sports[i]['events']){
 				continue;
