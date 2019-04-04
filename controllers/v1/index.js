@@ -32,8 +32,12 @@ class IndexController{
 				if(sports['sports'][i]['sport_name'] == 'NFL' || sports['sports'][i]['sport_name'] == 'NBA' || sports['sports'][i]['sport_name'] == 'MLB'){
 					sports['sports'][i]['events']['events'][x]['teams_normalized'][0]['logo'] = config.cdn + 'logos/' + sports['sports'][i]['events']['events'][x]['teams_normalized'][0]['mascot'].toLowerCase().replace(' ' , '') + '.gif';
 					sports['sports'][i]['events']['events'][x]['teams_normalized'][1]['logo'] = config.cdn + 'logos/' + sports['sports'][i]['events']['events'][x]['teams_normalized'][1]['mascot'].toLowerCase().replace(' ' , '') + '.gif';
-					console.log(config.cdn + 'logos/' + sports['sports'][i]['events']['events'][x]['teams_normalized'][1]['mascot'].toLowerCase() + '.gif');
 				}
+				var datetime = (sports['sports'][i]['events']['events'][x]['event_date']);
+				var date = new Date(datetime);
+				var minute = date.getUTCMinutes();
+				var hour = date.getUTCHours();
+				sports['sports'][i]['events']['events'][x]['event_date'] = hour + ':'  +  minute;
 			}
 
 		}
