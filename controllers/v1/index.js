@@ -28,7 +28,7 @@ class IndexController{
 				continue;
 			}
 			if(sports['sports'][i]['sport_name']!= 'NFL' || sports['sports'][i]['sport_name'] != 'NBA' || sports['sports'][i]['sport_name'] != 'MLB'){
-					delete sports['sports'][i];
+					sports['sports'].splice(i, 1);
 					continue;
 			}
 
