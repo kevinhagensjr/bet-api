@@ -36,6 +36,13 @@ class IndexController{
 					sports['sports'][i]['events']['events'][x]['teams_normalized'][0]['logo'] = config.cdn + 'logos/' + sports['sports'][i]['events']['events'][x]['teams_normalized'][0]['mascot'].toLowerCase().replace(' ' , '') + '.gif';
 					sports['sports'][i]['events']['events'][x]['teams_normalized'][1]['logo'] = config.cdn + 'logos/' + sports['sports'][i]['events']['events'][x]['teams_normalized'][1]['mascot'].toLowerCase().replace(' ' , '') + '.gif';
 
+					if(sports['sports'][i]['events']['events'][x]['teams_normalized'][0]['logo'].includes('cardinals') && sports['sports'][i]['sport_name'] == 'MLB'){
+							sports['sports'][i]['events']['events'][x]['teams_normalized'][0]['logo'].replace('cardinals','cardinalsbb');
+					}
+					if(sports['sports'][i]['events']['events'][x]['teams_normalized'][1]['logo'].includes('cardinals') && sports['sports'][i]['sport_name'] == 'MLB'){
+							sports['sports'][i]['events']['events'][x]['teams_normalized'][1]['logo'].replace('cardinals','cardinalsbb');
+					}
+
 					var datetime = (sports['sports'][i]['events']['events'][x]['event_date']);
 					var date = new Date(datetime);
 					var minute = date.getUTCMinutes();
