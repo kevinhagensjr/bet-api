@@ -48,7 +48,7 @@ class IndexController{
 
 		}
 
-	//	console.log(JSON.stringify(sports));
+		console.log(JSON.stringify(feed));
 
 		return res.json(feed);
 	}
