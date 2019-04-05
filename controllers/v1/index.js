@@ -37,10 +37,10 @@ class IndexController{
 					sports['sports'][i]['events']['events'][x]['teams_normalized'][1]['logo'] = config.cdn + 'logos/' + sports['sports'][i]['events']['events'][x]['teams_normalized'][1]['mascot'].toLowerCase().replace(' ' , '') + '.gif';
 
 					if(sports['sports'][i]['events']['events'][x]['teams_normalized'][0]['logo'].includes('cardinals') && sports['sports'][i]['sport_name'] == 'MLB'){
-							sports['sports'][i]['events']['events'][x]['teams_normalized'][0]['logo'].replace('cardinals','cardinalsbb');
+						sports['sports'][i]['events']['events'][x]['teams_normalized'][0]['logo'] = sports['sports'][i]['events']['events'][x]['teams_normalized'][0]['logo'].replace('cardinals','cardinalsbb');
 					}
 					if(sports['sports'][i]['events']['events'][x]['teams_normalized'][1]['logo'].includes('cardinals') && sports['sports'][i]['sport_name'] == 'MLB'){
-							sports['sports'][i]['events']['events'][x]['teams_normalized'][1]['logo'].replace('cardinals','cardinalsbb');
+						sports['sports'][i]['events']['events'][x]['teams_normalized'][1]['logo'] = sports['sports'][i]['events']['events'][x]['teams_normalized'][1]['logo'].replace('cardinals','cardinalsbb');
 					}
 
 					var datetime = (sports['sports'][i]['events']['events'][x]['event_date']);
@@ -54,8 +54,6 @@ class IndexController{
 			}
 
 		}
-
-		console.log(JSON.stringify(feed));
 
 		return res.json(feed);
 	}
