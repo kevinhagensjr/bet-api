@@ -22,23 +22,26 @@ class IndexController{
 			});
 		}
 
+		let feed = {
+			sports : []
+		};
 		let sports = await this.dayModel.getDay(SportHelper.getDate());
 		for(let i =0; i < sports['sports'].length; i++){
-		
-			if(sports['sports'][i]['sport_name']!= 'NFL' || sports['sports'][i]['sport_name'] != 'NBA' || sports['sports'][i]['sport_name'] != 'MLB'){
-					sports['sports'].splice(i, 1);
-					continue;
-			}
 
-			for(let x =0; x < sports['sports'][i]['events']['events'].length; x++){
-				sports['sports'][i]['events']['events'][x]['teams_normalized'][0]['logo'] = config.cdn + 'logos/' + sports['sports'][i]['events']['events'][x]['teams_normalized'][0]['mascot'].toLowerCase().replace(' ' , '') + '.gif';
-				sports['sports'][i]['events']['events'][x]['teams_normalized'][1]['logo'] = config.cdn + 'logos/' + sports['sports'][i]['events']['events'][x]['teams_normalized'][1]['mascot'].toLowerCase().replace(' ' , '') + '.gif';
+			if(sports['sports'][i]['sport_name'] == 'NFL' || sports['sports'][i]['sport_name'] == 'NBA' || sports['sports'][i]['sport_name'] == 'MLB'){
 
-				var datetime = (sports['sports'][i]['events']['events'][x]['event_date']);
-				var date = new Date(datetime);
-				var minute = date.getUTCMinutes();
-				var hour = date.getUTCHours();
-				sports['sports'][i]['events']['events'][x]['event_date'] = hour + ':'  +  minute;
+				for(let x =0; x < sports['sports'][i]['events']['events'].length; x++){
+					sports['sports'][i]['events']['events'][x]['teams_normalized'][0]['logo'] = config.cdn + 'logos/' + sports['sports'][i]['events']['events'][x]['teams_normalized'][0]['mascot'].toLowerCase().replace(' ' , '') + '.gif';
+					sports['sports'][i]['events']['events'][x]['teams_normalized'][1]['logo'] = config.cdn + 'logos/' + sports['sports'][i]['events']['events'][x]['teams_normalized'][1]['mascot'].toLowerCase().replace(' ' , '') + '.gif';
+
+					var datetime = (sports['sports'][i]['events']['events'][x]['event_date']);
+					var date = new Date(datetime);
+					var minute = date.getUTCMinutes();
+					var hour = date.getUTCHours();
+					sports['sports'][i]['events']['events'][x]['event_date'] = hour + ':'  +  minute;
+				}
+
+				feed['sports'].push(sports['sports'][i]);
 			}
 
 		}
