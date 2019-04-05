@@ -29,7 +29,9 @@ class IndexController{
 		for(let i =0; i < sports['sports'].length; i++){
 
 			if(sports['sports'][i]['sport_name'] == 'NFL' || sports['sports'][i]['sport_name'] == 'NBA' || sports['sports'][i]['sport_name'] == 'MLB'){
-
+				if(sports['sports'][i]['events']['events'].length == 0){
+					continue;
+				}
 				for(let x =0; x < sports['sports'][i]['events']['events'].length; x++){
 					sports['sports'][i]['events']['events'][x]['teams_normalized'][0]['logo'] = config.cdn + 'logos/' + sports['sports'][i]['events']['events'][x]['teams_normalized'][0]['mascot'].toLowerCase().replace(' ' , '') + '.gif';
 					sports['sports'][i]['events']['events'][x]['teams_normalized'][1]['logo'] = config.cdn + 'logos/' + sports['sports'][i]['events']['events'][x]['teams_normalized'][1]['mascot'].toLowerCase().replace(' ' , '') + '.gif';
