@@ -28,11 +28,14 @@ class IndexController{
 				continue;
 			}
 
+			let feed = [];
 			for(let x =0; x < sports['sports'][i]['events']['events'].length; x++){
-				if(sports['sports'][i]['sport_name'] == 'NFL' || sports['sports'][i]['sport_name'] == 'NBA' || sports['sports'][i]['sport_name'] == 'MLB'){
-					sports['sports'][i]['events']['events'][x]['teams_normalized'][0]['logo'] = config.cdn + 'logos/' + sports['sports'][i]['events']['events'][x]['teams_normalized'][0]['mascot'].toLowerCase().replace(' ' , '') + '.gif';
-					sports['sports'][i]['events']['events'][x]['teams_normalized'][1]['logo'] = config.cdn + 'logos/' + sports['sports'][i]['events']['events'][x]['teams_normalized'][1]['mascot'].toLowerCase().replace(' ' , '') + '.gif';
+				if(sports['sports'][i]['sport_name']!= 'NFL' || sports['sports'][i]['sport_name'] != 'NBA' || sports['sports'][i]['sport_name'] != 'MLB'){
+						continue;
 				}
+				sports['sports'][i]['events']['events'][x]['teams_normalized'][0]['logo'] = config.cdn + 'logos/' + sports['sports'][i]['events']['events'][x]['teams_normalized'][0]['mascot'].toLowerCase().replace(' ' , '') + '.gif';
+				sports['sports'][i]['events']['events'][x]['teams_normalized'][1]['logo'] = config.cdn + 'logos/' + sports['sports'][i]['events']['events'][x]['teams_normalized'][1]['mascot'].toLowerCase().replace(' ' , '') + '.gif';
+				
 				var datetime = (sports['sports'][i]['events']['events'][x]['event_date']);
 				var date = new Date(datetime);
 				var minute = date.getUTCMinutes();

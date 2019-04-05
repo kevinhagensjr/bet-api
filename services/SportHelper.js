@@ -67,8 +67,6 @@ class SportHelper{
             console.log('status code: ' + response.statusCode + ' get eventsBySport error: ' + error );
             resolve(false);
           }
-
-          
           resolve(JSON.parse(body));
       });
     });
