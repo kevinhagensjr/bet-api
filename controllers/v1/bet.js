@@ -15,14 +15,13 @@ class BetController{
 
   async post(req,res){
       const userID = auth.getUserID(req);
-
-      /*
-      const title = req.body.title;
-      let description = req.body.description;
-      const thumbnailList = req.body.thumbnails;
-			const phone   = req.body.phone;
-			const rating  = req.body.rating;
-			const timestamp = Date.now();
+			const eventID = req.body.eventID;
+			const sportID = req.body.sportID;
+			const amount = req.body.amount;
+			const date = req.body.date;
+			const timestamp = Date.now()
+			const opponentID = req.body.opponentID;
+			const mascot = req.body.mascot;
 
 			if(!userID){
 				return res.json({
@@ -31,114 +30,92 @@ class BetController{
 				});
 			}
 
-			if(!title){
+			if(!eventID){
 				return res.json({
 					success : false,
-					error : 'Sale does not have title'
+					error : 'No event selected'
 				});
 			}
 
-			if(!description){
-				description = "";
-			}
-
-		 	let addressObject = await this.userModel.getAddress(userID);
-			if(!addressObject){
+			if(!sportID){
 				return res.json({
 					success : false,
-					error : 'Must have address for garage sale'
+					error : 'No sport found'
 				});
 			}
 
-			let coordinates = await this.geolocate(addressObject);
-			addressObject.lat = coordinates.lat;
-			addressObject.lon = coordinates.lng;
+			if(!date){
+				return res.json({
+					success : false,
+					error : 'Date for event not found'
+				});
+			}
 
-      let saleObject = {
+			if(!mascot){
+				return res.json({
+					success : false,
+					error : 'No team mascot found'
+				});
+			}
+
+			if(!amount || amount < 10){
+				return res.json({
+					success : false,
+					error : 'Bet amount could not be found'
+				});
+			}
+
+			if(!opponentID){
+				return res.json({
+					success : false,
+					error : 'Could not find friend to bet against'
+				});
+			}
+
+			const betAdded = await this.betModel({
 				userID : userID,
-				title : title,
-				description : description,
+				eventID : eventID,
+				sportID : sportID,
+				amount : amount,
 				timestamp : timestamp,
-				address : addressObject,
-				pref : {
-					phone : phone,
-					rating : rating
-				}
-			};
+				date : date
+			});
 
-			let thumbnails = [];
-			if(thumbnailList){
-				thumbnails = thumbnailList.split(',');
-				for(let i=0; i < thumbnails.length; i++){
-						thumbnails[i] = config.cdn + thumbnails[i];
-				}
-			}
-
-			if(thumbnails.length > 0){
-				saleObject.thumbnails = thumbnails;
-			}
-
-
-
-			const saleAdded = await this.saleModel.setSale(saleObject);
-			if(!saleAdded){
-				return res.json({
-	        success : false,
-	        error : 'Could not post sale'
-	      });
-			}
-			const saleID = await this.saleModel.getSaleID(userID,timestamp);
-			if(!saleID){
+			if(!betAdded){
 				return res.json({
 					success : false,
-					saleID : "Could not post sale"
+					error : 'Failed to place bet'
+				});
+			}
+
+			const betID = await this.betModel.getBetID(userID,timestamp);
+			if(!betID){
+				return res.json({
+					success : false,
+					error : 'Failed to place bet'
 				});
 			}
 
 			//create notification
 			const username = await this.userModel.getName(userID);
 			if(username){
-					const message = username + ' posted a sale';
+					const message = username + ' placed a bet for the ' + mascot;
 					await this.notificationModel.setNotification({
 						userID : userID,
-						type : 'post',
+						type : 'bet',
 						message : message,
 						details : {
-							saleID : saleID,
-							address : addressObject
+							betID : betID
 						},
 						timestamp : timestamp
 					});
 
 				 const notificationID = await this.notificationModel.findNotification(userID,timestamp);
-				 if(notificationID){
-						//start background tasks
-					/*	const rabbitMQ = new RabbitMQ();
-						const brokerConnected = await rabbitMQ.connect();
-						if(brokerConnected){
-							rabbitMQ.startJob({
-								userID : userID,
-								storyID : storyID,
-								notificationID : notificationID,
-								thumbnail : thumbnailUrl,
-								username : username,
-								text : text,
-								message : message,
-								timestamp : timestamp,
-								job : 'publish'
-							});
-						}
-				}
-
-				debug('SALE POSTED: userID: ' + userID + ', saleID: ' + saleID + ' message: ' + message);
-		}
-
-		const link = "garagesailor.com/sale/" + saleID;//'http://topik.me/story/' + storyID;
-		return res.json({
-			success : true,
-			saleID : saleID,
-			link : link
-		});  */
+			}
+			return res.json({
+				success : true,
+				betID : betID
+			});
   }
 
 

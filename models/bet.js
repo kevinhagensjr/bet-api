@@ -122,7 +122,7 @@ class BetModel{
     @param - timestamp - time the bet was made
     Description: get betID from user info
   */
-  async getbetID(userID,timestamp){
+  async getBetID(userID,timestamp){
 		if(!userID || !timestamp){
 			return false;
 		}
