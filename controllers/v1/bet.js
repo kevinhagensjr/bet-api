@@ -22,6 +22,7 @@ class BetController{
 			const timestamp = Date.now()
 			const opponentID = req.body.opponentID;
 			const mascot = req.body.mascot;
+			const teamID = req.body.teamID;
 
 			if(!userID){
 				return res.json({
@@ -34,6 +35,13 @@ class BetController{
 				return res.json({
 					success : false,
 					error : 'No event selected'
+				});
+			}
+
+			if(!teamID){
+				return res.json({
+					success : false,
+					error : 'No team selected'
 				});
 			}
 
@@ -76,6 +84,7 @@ class BetController{
 				userID : userID,
 				eventID : eventID,
 				sportID : sportID,
+				teamID : teamID,
 				amount : amount,
 				timestamp : timestamp,
 				date : date
