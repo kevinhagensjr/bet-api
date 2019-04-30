@@ -459,13 +459,9 @@ class IndexController{
 	async search(req,res){
 		const userID = auth.getUserID(req);
 		const search = req.body.search;
-
-
+		
 		if(!userID){
-			return res.json({
-				success : false,
-				error   : 'user id is invalid'
-			});
+			return res.json([]);
 		}
 		if(!search || search.length < 2){
 			return res.json([]);

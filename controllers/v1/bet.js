@@ -80,7 +80,7 @@ class BetController{
 				});
 			}
 
-			const betAdded = await this.betModel({
+			const betAdded = await this.betModel.setBet({
 				userID : userID,
 				eventID : eventID,
 				sportID : sportID,
