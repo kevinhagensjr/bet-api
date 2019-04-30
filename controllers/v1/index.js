@@ -459,10 +459,7 @@ class IndexController{
 	async search(req,res){
 		const userID = auth.getUserID(req);
 		const search = req.body.search;
-		let searchObject = {
-			users : [],
-			bets : []
-		};
+
 
 		if(!userID){
 			return res.json({
@@ -471,9 +468,11 @@ class IndexController{
 			});
 		}
 		if(!search || search.length < 2){
-			return res.json(searchObject);
+			return res.json([]);
 		}
-		return res.json(searchObject);
+
+		const searchArray = await this.userModel.search(search);
+		return res.json(searchArray);
 	}
 
 	isEmail(email) {

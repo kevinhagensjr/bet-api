@@ -446,7 +446,7 @@ class UserModel{
    try{
      const result = await this.collection
      .find({username : {$regex : search.replace(/\s/g, '').toString().toLowerCase(),$options: 'i'}})
-     .project({password : 0,devies : 0})
+     .project({password : 0,devices : 0})
      .toArray();
 
      if(!result || result.length == 0){
