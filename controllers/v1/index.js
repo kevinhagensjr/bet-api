@@ -26,7 +26,7 @@ class IndexController{
 			sports : []
 		};
 		let sports = await this.dayModel.getDay(SportHelper.getDate());
-		console.log(JSON.stringify(sports));
+		console.log('date: ' + SportHelper.getDate() + ' '  + JSON.stringify(sports));
 		for(let i =0; i < sports['sports'].length; i++){
 			if(sports['sports'][i]['sport_name'] == 'NFL' || sports['sports'][i]['sport_name'] == 'NBA' || sports['sports'][i]['sport_name'] == 'MLB'){
 				if(sports['sports'][i]['events']['events'].length == 0){
