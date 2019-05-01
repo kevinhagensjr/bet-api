@@ -55,6 +55,8 @@ class IndexController{
 
 		}
 
+		console.log(JSON.stringify(feed));
+
 		return res.json(feed);
 	}
 
@@ -459,7 +461,7 @@ class IndexController{
 	async search(req,res){
 		const userID = auth.getUserID(req);
 		const search = req.body.search;
-		
+
 		if(!userID){
 			return res.json([]);
 		}

@@ -41,7 +41,8 @@ let config = {
 	},
 	sportsteamlogo : {
 		key : 'e1d8e2f3866340ab9acab58b49553804'
-	}
+	},
+	charge : "BetuFood game charge"
 };
 
 module.exports = config;

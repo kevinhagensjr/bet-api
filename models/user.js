@@ -180,6 +180,35 @@ class UserModel{
    }
  }
 
+ async getStripeToken(userID){
+
+   if(!userID){
+     return false;
+   }
+
+   let stripe = false;//await this.getKeyFromCache(this.prefix  + userID,'email');
+
+   try{
+     const result = await this.collection
+     .find({_id : new ObjectID(userID)})
+     .project({stripe : 1,_id : 0})
+     .toArray();
+
+     if(result.length == 0){
+       return false;
+     }
+
+     stripe = result[0].stripe;
+    // this.setKeyToCache(this.prefix + userID,'email',email);
+
+     return stripe;
+
+   }catch(e){
+     console.error('ERROR, failed to get email, ' + e);
+     return false;
+   }
+ }
+
  /*
    @params - userID - id of user for query
    Description: get name

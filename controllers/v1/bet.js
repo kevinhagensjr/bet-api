@@ -4,6 +4,7 @@ const auth = require('./../../services/auth');
 const relativeDate = require('relative-date');
 //const craigslist = require('node-craigslist');
 const request = require('request');
+const stripe = require("stripe")(config.stripe.key.secret);
 
 class BetController{
 
@@ -80,6 +81,29 @@ class BetController{
 				});
 			}
 
+			const stripeToken = await this.userModel.getStripeToken(userID);
+			if(!stripeToken){
+				return res.json({
+					success : false,
+					error : 'Could not find card on file'
+				});
+			}
+
+			try{
+				const charge = await stripe.charges.create({
+					 amount: amount,
+					 currency: 'usd',
+					 description: config.charge,
+					 source: stripeToken,
+				});
+
+			}catch(e){
+				return res.json({
+					success : false,
+					error : 'Could not process card on file'
+				});
+			}
+
 			const betAdded = await this.betModel.setBet({
 				userID : userID,
 				eventID : eventID,
@@ -121,6 +145,8 @@ class BetController{
 
 				 const notificationID = await this.notificationModel.findNotification(userID,timestamp);
 			}
+
+
 			return res.json({
 				success : true,
 				betID : betID
