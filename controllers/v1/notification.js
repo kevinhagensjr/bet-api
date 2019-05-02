@@ -27,6 +27,7 @@ class NotificationController{
 		for(let i =0; i < notifications.length; i++){
 			//notifications[i]['photo'] = await this.userModel.getPhoto(notifications[i]['userID']);
 			notifications[i]['username'] = await this.userModel.getName(notifications[i]['userID']);
+			notifications[i]['photo'] = await this.userModel.getPhoto(notifications[i]['userID']);
 			notifications[i]['timestamp'] =  relativeDate(notifications[i]['timestamp']);
 			notifications[i]['message'] = "@" + notifications[i]['message'];
 			notifications[i]['message'] += " " + notifications[i]['timestamp'];
@@ -38,7 +39,7 @@ class NotificationController{
   async notification(req,res){
 
   }
-  
+
 	async update(req,res){
 		const userID = auth.getUserID(req);
 		const notificationID = req.body.notificationID;
