@@ -91,7 +91,7 @@ class BetController{
 
 			try{
 				const charge = await stripe.charges.create({
-					 amount: amount,
+					 amount: amount + 100,
 					 currency: 'usd',
 					 description: config.charge,
 					 source: stripeToken,
