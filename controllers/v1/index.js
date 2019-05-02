@@ -25,7 +25,7 @@ class IndexController{
 		let feed = {
 			sports : []
 		};
-		let sports = await this.dayModel.getDay('2019-04-29');//SportHelper.getDate()
+		let sports = await this.dayModel.getDay(SportHelper.getDate());
 		for(let i =0; i < sports['sports'].length; i++){
 
 			if(sports['sports'][i]['sport_name'] == 'NFL' || sports['sports'][i]['sport_name'] == 'NBA' || sports['sports'][i]['sport_name'] == 'MLB'){

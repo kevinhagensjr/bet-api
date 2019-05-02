@@ -71,6 +71,10 @@ class SportHelper{
       });
     });
   }
+
+  async checkGameResults(){
+    
+  }
 }
 
 module.exports = new SportHelper();
