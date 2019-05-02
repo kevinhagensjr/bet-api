@@ -91,7 +91,7 @@ class BetController{
 
 			try{
 				const charge = await stripe.charges.create({
-					 amount: amount + 100,
+					 amount: amount + 10,
 					 currency: 'usd',
 					 description: config.charge,
 					 source: 'tok_mastercard_debit', //// TODO: SWAP FAKE CARD FOR TEST CARD
