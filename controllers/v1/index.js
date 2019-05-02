@@ -6,6 +6,7 @@ const slack = require('./../../services/slack');
 const relativeDate = require('relative-date');
 const request = require('request');
 const SportHelper = require('./../../services/SportHelper');
+const moment = require('moment');
 
 class IndexController{
 	constructor(){
