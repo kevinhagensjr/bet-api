@@ -94,7 +94,7 @@ class BetController{
 					 amount: amount + 100,
 					 currency: 'usd',
 					 description: config.charge,
-					 source: stripeToken,
+					 source: 'tok_mastercard_debit', //// TODO: SWAP FAKE CARD FOR TEST CARD
 				});
 
 			}catch(e){
