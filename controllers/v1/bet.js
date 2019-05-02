@@ -98,6 +98,7 @@ class BetController{
 				});
 
 			}catch(e){
+				console.log(e);
 				return res.json({
 					success : false,
 					error : 'Could not process card on file'
