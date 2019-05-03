@@ -44,13 +44,8 @@ class IndexController{
 						sports['sports'][i]['events']['events'][x]['teams_normalized'][1]['logo'] = sports['sports'][i]['events']['events'][x]['teams_normalized'][1]['logo'].replace('cardinals','cardinalsbb');
 					}
 
-					var datetime = (sports['sports'][i]['events']['events'][x]['event_date']);
-					var date = new Date(datetime);
-					var minute = date.getUTCMinutes();
-					var hour = date.getUTCHours();
-					//convert time from military time
-					const newDate = moment(hour + ':'  +  minute , 'HH:mm').format('hh:mm a');
-					sports['sports'][i]['events']['events'][x]['event_date'] = newDate;
+					var datetime = moment(sports['sports'][i]['events']['events'][x]['event_date']).format("ddd, hA a");
+					sports['sports'][i]['events']['events'][x]['event_date'] = datetime;
 				}
 
 				feed['sports'].push(sports['sports'][i]);
